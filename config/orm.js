@@ -1,5 +1,6 @@
-// Import mySQL connection
-var connection = require("../config/connection.js");
+// Import MySQL connection.
+var connection = require("./connection.js");
+
 // Helper function for SQL syntax.
 // Let's say we want to pass 3 values into the mySQL query.
 // In order to write the query, we need 3 question marks.
@@ -23,13 +24,13 @@ function objToSql(ob) {
     for (var key in ob) {
         var value = ob[key];
         // check to skip hidden properties
-        if (object.hasOwnProperty.call(ob, key)) {
+        if (Object.hasOwnProperty.call(ob, key)) {
             // if string with spaces, add quotations (Lana Del Grey => 'Lana Del Grey')
             if (typeof value === "string" && value.indexOf(" ") >= 0) {
                 value = "'" + value + "'";
             }
             // e.g. {name: 'Lana Del Grey'} => ["name='Lana Del Grey'"]
-            // e.g. {devoured: true} => ["devoured=true"]
+            // e.g. {sleepy: true} => ["sleepy=true"]
             arr.push(key + "=" + value);
         }
     }
@@ -40,16 +41,37 @@ function objToSql(ob) {
 
 // Object for all our SQL statement functions.
 var orm = {
-    all: function (tableInput, cb) {
-        var queryString = "SELECT * FROM " + tableInput + ";";
-        connection.query(queryString, function (err, result) {
+    all: function(table, cb) {
+        var queryString = "SELECT * FROM " + table;
+        
+        connection.query(queryString, function(err, result) {
             if (err) {
                 throw err;
             }
             cb(result);
         });
     },
-    create: function (table, cols, vals, cb) {
+    allOrder: function(table, orderCol, cb) {
+        var queryString = "SELECT * FROM " + table + " ORDER BY " + orderCol;
+        
+        connection.query(queryString, function(err, result) {
+            if (err) {
+                throw err;
+            }
+            cb(result);
+        });
+    },
+    allOrderDesc: function(table, orderCol, cb) {
+        var queryString = "SELECT * FROM " + table + " ORDER BY " + orderCol + " DESC";
+        
+        connection.query(queryString, function(err, result) {
+            if (err) {
+                throw err;
+            }
+            cb(result);
+        });
+    },
+    create: function(table, cols, vals, cb) {
         var queryString = "INSERT INTO " + table;
 
         queryString += " (";
@@ -59,18 +81,17 @@ var orm = {
         queryString += printQuestionMarks(vals.length);
         queryString += ") ";
 
-        console.log(queryString);
+        // console.log(queryString);
 
-        connection.query(queryString, vals, function (err, result) {
+        connection.query(queryString, vals, function(err, result) {
             if (err) {
                 throw err;
             }
-
             cb(result);
         });
     },
-    // An example of objColVals would be {burger_name: burger, devoured: true}
-    update: function (table, objColVals, condition, cb) {
+    // An example of objColVals would be {name: panther, sleepy: true}
+    update: function(table, objColVals, condition, cb) {
         var queryString = "UPDATE " + table;
 
         queryString += " SET ";
@@ -78,16 +99,31 @@ var orm = {
         queryString += " WHERE ";
         queryString += condition;
 
-        console.log(queryString);
-        connection.query(queryString, function (err, result) {
+        // console.log(queryString);
+        
+        connection.query(queryString, function(err, result) {
             if (err) {
                 throw err;
             }
 
             cb(result);
         });
+    },
+    delete: function(table, condition, cb) {
+        var queryString = "DELETE FROM " + table;
+
+        queryString += " WHERE ";
+        queryString += condition;
+
+        connection.query(queryString, function(err, result) {
+            if (err) {
+                throw err;
+            }
+            cb(result);
+        });
     }
 };
 
-// Export the orm object for the model (burger.js).
+// Export the orm object for the model (cat.js).
 module.exports = orm;
+
