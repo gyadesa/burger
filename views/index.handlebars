@@ -1,38 +1,35 @@
+<div class="container">
+    <section id="page-name">
+            <iframe id="main-image" src="https://media2.giphy.com/media/ecmUy7emcy8Ja/giphy.gif" width="480" height="326" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+            <h1>Eat-Da-Buger</h1>
+    </section>
 <h1>Burgers!</h1>
 
-<h2>Burgers that are not Devour!</h2>
+<h2>Burgers that are not Devoured!</h2>
 
-<ul>
-  {{#each brgers}}
-    {{#unless devour}}
-      {{> burgers/burger-block devour=true}}
-    {{/unless}}
-  {{/each}}
-</ul>
-
-<h2>Burgers that are devourey!</h2>
-
-<ul>
-  {{#each burgers}}
-    {{#if devourey}}
-      {{> burgers/burger-block devour=false}}
-    {{/if}}
-  {{/each}}
-</ul>
-
-<h2>Add a Burger</h2>
+<section class="row">
+        <div class="col-md-7 col-left">
+            <table>
+                {{#each burgers}}
+                    {{#unless devoured}}
+                        {{> burgers/burger-block}}
+                    {{/unless}}
+                {{/each}}
+            </table>
+        </div>
+        <div class="col-md-5 col-right">
+            {{#each burgers}}
+                {{#if devoured}}
+                    <div>{{id}}. {{burger_name}}</div>
+                {{/if}}
+            {{/each}}        
+        </div>          
+    </section>
 <form class="create-form">
-
-  <div class="form-group">
-    <label for="bu">Burger Name:</label>
-    <input type="text" id="bu" name="name">
-  </div>
-
-  <div class="form-group">
-    <label for="bdevouy">devourey?</label><br>
-    <input type="radio" name="devourey" value="1" checked> devourey!<br>
-    <input type="radio" name="devourey" value="0"> Awake
-  </div>
-
-  <button type="submit">Add Burger</button>
-</form>
+        <div class="form-group">
+            <label for="name"></label>
+            <textarea id="name" name="burger-name" rows="2" cols="40" placeholder="What do you want to eat?"></textarea>
+        </div>
+        <button type="submit">Add Burger</button>
+    </form>     
+</div>
