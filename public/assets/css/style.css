@@ -8,18 +8,24 @@ body {
 	font-size: 2em;
 }
 
+.jumbotron {
+/*	background-image: url(../images/web_header.jpg);*/
+    background-size: cover;
+	background-repeat:no-repeat;
+  }
+
 body:after {
 	content : "";
 	display: block;
 	position: absolute;
 	top: 0;
 	left: 0;
-	background-image: url(../image/burger_background.jpg);
+	background-image: url(../images/restaurant1.jpg);
 	background-size: cover;
 	background-repeat:no-repeat;
 	width: 100%;
-	min-height: 100vh;
-	opacity : 0.3;
+	min-height: 140vh;
+	opacity : 1;
 	z-index: -1;
 }
 
@@ -58,3 +64,27 @@ td {
 	margin-top: 50px;
 	text-align: center;
 }
+
+#eatBurger {
+    background-color:orange;
+  }
+
+#boxNotDevoured {
+	font-size: 14px;
+	padding: 10px;
+	height: 320px;
+	background-color:rgb(105, 140, 236);;
+	text-align: left;
+}
+
+#boxDevoured {
+ padding: 10px;
+ height: 320px;
+ background-color:rgb(105, 140, 236);
+ text-align:left;
+}
+#addBurger {
+background-color:orange;
+text-align: center;
+padding: 0px 0px;
+} 

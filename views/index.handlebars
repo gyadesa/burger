@@ -1,35 +1,64 @@
 <div class="container">
-    <section id="page-name">
-            <iframe id="main-image" src="https://media2.giphy.com/media/ecmUy7emcy8Ja/giphy.gif" width="480" height="326" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
-            <h1>Eat-Da-Buger</h1>
-    </section>
-<h1>Burgers!</h1>
-
-<h2>Burgers that are not Devoured!</h2>
-
-<section class="row">
-        <div class="col-md-7 col-left">
-            <table>
-                {{#each burgers}}
-                    {{#unless devoured}}
-                        {{> burgers/burger-block}}
-                    {{/unless}}
-                {{/each}}
-            </table>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mb-2">
+                <h1 class="card-header text-center" id="eatBurger">Eat-Da-Burger!</h1>
+            </div>
         </div>
-        <div class="col-md-5 col-right">
-            {{#each burgers}}
-                {{#if devoured}}
-                    <div>{{id}}. {{burger_name}}</div>
-                {{/if}}
-            {{/each}}        
-        </div>          
-    </section>
-<form class="create-form">
-        <div class="form-group">
-            <label for="name"></label>
-            <textarea id="name" name="burger-name" rows="2" cols="40" placeholder="What do you want to eat?"></textarea>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card mb-2">
+                <h4 class="card-header text-center" id="eatBurger">Devour it!</h4>
+                <div class="card-body text-left" id="boxNotDevoured">
+                    <h5>
+                        <ul>
+                            {{#each burgers}} 
+                                {{#unless devoured}} 
+                                    {{> burgers/burger-block}} 
+                                {{/unless}} 
+                            {{/each}}
+                        </ul>
+                    </h5>
+                </div>
+            </div>
         </div>
-        <button type="submit">Add Burger</button>
-    </form>     
+        <div class="col-md-6">
+            <div class="card mb-2">
+                <div style="width:100%;height:0;padding-bottom:56%;position:relative;"><iframe src="https://giphy.com/embed/X4Wfewq7Otwje"
+                        width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card mb-2">
+                <h4 class="card-header text-center" id="eatBurger">Devoured!</h4>
+                <div class="card-body text-center" id="boxDevoured">
+                    <h5>
+                        {{#each burgers}} 
+                            {{#if devoured}}
+                        <div>
+                            <ul>
+                                {{id}}. 
+                                {{burger_name}}
+                            </ul>
+                        </div>
+                            {{/if}} 
+                            {{/each}}
+                    </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mb-2" id="addBurger">
+                <form class="create-form">
+                    <div class="form-group" >
+                        <h4><textarea id="name" name="burger-name" rows="1" cols="40" placeholder="Add burger you want to eat?"></textarea></h4>
+                    </div>
+                    <h4><button type="submit">Add Burger</button></4>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
