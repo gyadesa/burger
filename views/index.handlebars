@@ -13,12 +13,11 @@
                 <div class="card-body text-left" id="boxNotDevoured">
                     <h5>
                         <ul>
-                            {{#each burgers}} 
+                            <p>{{#each burgers}}</p>
                                 {{#unless devoured}} 
                                     {{> burgers/burger-block}} 
                                 {{/unless}} 
                             {{/each}}
-                        </ul>
                     </h5>
                 </div>
             </div>
@@ -34,7 +33,9 @@
                 <h4 class="card-header text-center" id="eatBurger">Devoured!</h4>
                 <div class="card-body text-center" id="boxDevoured">
                     <h5>
-                        {{#each burgers}} 
+                        <ul>
+                        <p>{{#each burgers}}</p>
+                        </ul> 
                             {{#if devoured}}
                         <div>
                             <ul>
