@@ -1,4 +1,9 @@
 <tr class="table-row">
-    <td class="table-first-col">{{id}}. {{burger_name}}</td>
-    <td><button class="change-devour" data-id="{{id}}">Devour it!</button></td>
+    <td class="table-first-col">
+        <h5>{{id}}. {{burger_name}}</h5></td>
+    <td>
+        <button class="change-devour" data-id="{{id}}">Devour it!</button>
+
+        <button class="delete-devour" data-id="{{this.id}}">Delete!</button>
+    </td>
 </tr>

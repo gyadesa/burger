@@ -44,7 +44,7 @@ $(function () {
         }
     });
 
-    $(".delete-sleep").on("click", function (event) {
+    $(".delete-devour").on("click", function (event) {
         var id = $(this).data("id");
 
         $.ajax("/api/burgers/" + id, {
